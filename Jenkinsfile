@@ -36,5 +36,5 @@ node {
 
 
 
-Learn how to do
+
 

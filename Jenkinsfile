@@ -13,13 +13,18 @@ node {
         app = docker.build("ddougl204/repo")
     }
 
-    stage('Test image') {
-        /* test goes here */
-
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
-    }
+ 
+     stage('Sonarqube') {
+         environment {
+             scannerHome = tool 'SonarQubeScanner'
+         }    steps {
+             withSonarQubeEnv('sonarqube') {
+                 sh "${scannerHome}/bin/sonar-scanner"
+             }        timeout(time: 10, unit: 'MINUTES') {
+                 waitForQualityGate abortPipeline: true
+             }
+         }
+     }
 
     stage('Push image') {
         /* Finally, we'll push the image with two tags:

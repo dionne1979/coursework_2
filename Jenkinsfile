@@ -1,8 +1,6 @@
 node {
     def app
-    def scannerHome
-    def enviroment
-
+    
     stage('Clone repository') {
         /* clone repository to workspace */
 
@@ -20,7 +18,7 @@ node {
          environment {
              scannerHome = tool 'SonarQube'
          }    steps {
-             withSonarQubeEnv('sonarqube') {
+             withSonarQubeEnv('SonarQube') {
                  sh "${scannerHome}/bin/sonar-scanner"
              }   
          }

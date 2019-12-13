@@ -1,6 +1,7 @@
 node {
     def app
     def scannerHome
+    def enviroment
 
     stage('Clone repository') {
         /* clone repository to workspace */

@@ -7,13 +7,7 @@ node {
         checkout scm
     }
 
-    stage('Build image') {
-        /* build image */
-
-        app = docker.build("ddougl204/repo")
-    }
-
- 
+     
      stage('Sonarqube') {
          environment {
              scannerHome = tool 'SonarQube'
@@ -23,6 +17,13 @@ node {
              }   
          }
      }
+
+      stage('Build image') {
+        /* build image */
+
+         app = docker.build("ddougl204/repo")
+    }
+
 
     stage('Push image') {
         /* Finally, we'll push the image with two tags:

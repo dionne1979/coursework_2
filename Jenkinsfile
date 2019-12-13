@@ -10,7 +10,7 @@ node {
     stage('Build image') {
         /* build image */
 
-        app = docker.build("coursework/repo")
+        app = docker.build("ddougl204/repo")
     }
 
     stage('Test image') {
